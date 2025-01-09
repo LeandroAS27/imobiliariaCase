@@ -1,10 +1,21 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import Navigation from "./components/navigation";
+import "./styles/main.scss"
 
 export default function Home() {
   return (
     <>
-      <h1>Inicio</h1>
+      <header>
+        <Navigation/>
+      </header>
+
+      <main>
+
+      </main>
+
+      <footer>
+
+      </footer>
     </>
   );
 }

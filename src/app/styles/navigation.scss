@@ -1,0 +1,140 @@
+@import './variables.scss';
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $primary-color;
+    padding: 0 1rem;
+
+    img{
+        height: 124px;
+        width: 124px;
+        object-fit: contain;
+    }
+
+    &_navigation{
+        flex-grow: 1;
+        margin-left: 2rem;
+
+        .navigation_list{
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+
+            .navigation_item{
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: bold;
+                color: $text-color;
+
+                &:hover{
+                    color: #ffff00;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+    }
+
+    &_contact{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+
+        .contact_item{
+            p{
+                font-size: 0.95rem;
+                margin: 0;
+                color: $text-color;
+            }
+
+            span{
+                font-size: 1rem;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                color: $text-color;
+
+                .contact_whatsapp-icon{
+                    color: #25d366;
+                    margin-right: 8px;
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../public/imobiliariaWallpaper.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+
+    .home-title{
+        text-align: center;
+        h1{
+            font-size: 3rem;
+        }
+        p{
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.search-filter{
+    .form{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        margin: 2rem 0;
+
+        .filter-item{
+            display: flex;
+            flex-direction: column;
+
+            label{
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+            }
+
+            input,
+            select{
+                padding: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 1rem;
+                width: 100%;
+
+                &:focus{
+                    border-color: #25d366;
+                    outline: none;
+                }
+            }
+        }
+
+        .btn-filter{
+            grid-column: span 2;
+            padding: 0.3rem;
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.4s;
+
+            &:hover{
+                background-color: #1ca04d;
+            }
+        }
+    }
+}
