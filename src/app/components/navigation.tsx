@@ -1,10 +1,12 @@
 "use client"
-import Image from "next/image"
-import imobiliaria from '../../../public/imobiliaria.png';
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 import '../styles/navigation.scss';
+
+//images
+import Image from "next/image"
 import imobiliariaWallpaper from '../../../public/imobiliariaWallpaper.jpg';
+import imobiliaria from '../../../public/imobiliaria.png';
 
 interface FiltersProps{
     intention: string;
