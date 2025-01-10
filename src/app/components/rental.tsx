@@ -28,53 +28,53 @@ interface Property{
 
 const Properties: Property[] = [
     {
-    images: ["/image1.jpg", "/image2.jpg", "/image3.jpg"],
+    images: ["/rental1.webp",],
     title: "Apartamento",
-    location: "Rio de Janeiro, RJ",
+    location: "Zona Leste - São Paulo, SP",
     area: 250,
     bedrooms: 4,
     bathrooms: 3,
     parkingSpaces: 2,
-    price: 'R$ 1.200.000',
+    price: 'R$ 5.000',
  },
     {
-    images: ["/images4.jpg", "/images5.jpg", "/images6.jpg"],
+    images: ["/rental2.webp",],
     title: "Apartamento Luxuoso",
-    location: "Zona Norte - Sao Paulo, SP",
+    location: "Zona Norte - São Paulo, SP",
     area: 200,
     bedrooms: 3,
     bathrooms: 2,
     parkingSpaces: 2,
-    price: 'R$ 1.000.000',
+    price: 'R$ 8.000',
     },
     {
-        images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
+        images: ["/rental3.webp",],
         title: "Casa Luxuosa",
         location: "Zona Sul - Sao Paulo, SP",
         area: 300,
         bedrooms: 5,
         bathrooms: 4,
         parkingSpaces: 4,
-        price: 'R$ 1.700.000',
+        price: 'R$ 10.000',
         },
         {
-            images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
+            images: ["/rental3.webp",],
             title: "Casa Luxuosa",
             location: "Zona Leste - Sao Paulo, SP",
             area: 350,
             bedrooms: 5,
             bathrooms: 4,
             parkingSpaces: 4,
-            price: 'R$ 2.700.000',
+            price: 'R$ 15.000',
             },
 ]
 
-const Highlights: React.FC = () => {
+const Rental: React.FC = () => {
     return(
         <>
             <section className="highlight-section">
                 <h1>Destaques</h1>
-                <h3>Imoveis para Venda</h3>
+                <h3>Imoveis para Alugar</h3>
                 {/* carrossel dos imoveis */}
                 <Swiper
                     slidesPerView={3}
@@ -120,7 +120,7 @@ const Highlights: React.FC = () => {
                                                 <span><FontAwesomeIcon icon={faCar}/> Vagas: {property.parkingSpaces}</span>
                                             </div>
                                         </div>
-                                        <p className="property-price">Venda: {property.price}</p>
+                                        <p className="property-price">Alugue: {property.price}</p>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -131,4 +131,4 @@ const Highlights: React.FC = () => {
     )
 }
 
-export default Highlights;
+export default Rental;
