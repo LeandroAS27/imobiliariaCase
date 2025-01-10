@@ -8,6 +8,9 @@ const lora = Lora({subsets: ['latin'], weight: ['400', '700']});
 export const metadata: Metadata = {
   title: "ImobiliariaCase",
   description: "Site de Venda, Compra e Aluguel de Imoveis",
+  icons: {
+    icon: "/favicon.png",
+  }
 };
 
 export default function RootLayout({
