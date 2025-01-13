@@ -5,6 +5,7 @@ import Highlights from "./components/highlights";
 import Rental from "./components/rental";
 import Questions from "./components/questions";
 import Search from "./components/search";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
       </main>
 
       <footer>
-
+        <Footer/>
       </footer>
     </>
   );
