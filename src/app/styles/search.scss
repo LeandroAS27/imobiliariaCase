@@ -1,0 +1,49 @@
+.search-container{
+    width: 66%;
+    margin: 0 auto;
+    padding: 2rem;
+
+    .search-modal{
+        display: flex;
+        flex-direction: column;
+
+        h2{
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        .search-grid{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+
+            .search-group{
+                display: flex;
+                flex-direction: column;
+
+                .search-list{
+                    list-style-type: none;
+                    padding: 0;
+
+                    .search-item{
+                        margin: 0.5rem 0;
+
+                        a{
+                            text-decoration: none;
+                            color: #000;
+                            font-weight: bold;
+                            transition: color 0.3s ease;
+
+                            &:hover{
+                                color: #005bb5;
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
