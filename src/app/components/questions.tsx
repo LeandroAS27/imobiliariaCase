@@ -53,7 +53,7 @@ const Questions: React.FC = () => {
     return(
         <section className="faq-container-main">
             <div className="faq-container">
-                <h1>Duvidas frequentes</h1>
+                <h1>Dúvidas frequentes</h1>
 
                 <ul className="faq-list">
                     {items.map((items, index) => (

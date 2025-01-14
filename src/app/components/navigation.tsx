@@ -56,7 +56,7 @@ const Navigation = () => {
                             A Empresa
                         </li>
                         <li className="navigation_item">
-                            Cadastre seu Imovel
+                            Cadastre seu Imóvel
                         </li>
                         <li className="navigation_item">
                             Contato
@@ -85,7 +85,7 @@ const Navigation = () => {
             <main>
                 <section className="home">
                     <div className="home-title">
-                        <h1>ImobiliariaCase</h1>
+                        <h1>ImobiliáriaCase</h1>
                         <p>Seu novo lar começa aqui.</p>
                     </div>
                 
