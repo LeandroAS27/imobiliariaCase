@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Lora } from "@next/font/google";
 import "./globals.css";
+import Navigation from "./components/navigation";
 
 const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700']});
 const lora = Lora({subsets: ['latin'], weight: ['400', '700']});
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${montserrat.className} ${lora.className}`}>
-        {children}
+        <Navigation/>
+        <main>{children}</main>
       </body>
     </html>
   );

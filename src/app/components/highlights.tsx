@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import "../styles/highlights.scss"
+import { useState, useEffect } from "react";
 
 //swiperAPI
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +17,7 @@ import { faBed, faCar, faShower, faRulerCombined } from '@fortawesome/free-solid
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Property{
+    id: number;
     images: string[];
     title: string;
     location: string;
@@ -26,50 +28,78 @@ interface Property{
     price: string;
 }
 
-const Properties: Property[] = [
-    {
-    images: ["/image1.jpg", "/image2.jpg", "/image3.jpg"],
-    title: "Apartamento",
-    location: "Rio de Janeiro, RJ",
-    area: 250,
-    bedrooms: 4,
-    bathrooms: 3,
-    parkingSpaces: 2,
-    price: 'R$ 1.200.000',
- },
-    {
-    images: ["/images4.jpg", "/images5.jpg", "/images6.jpg"],
-    title: "Apartamento Luxuoso",
-    location: "Zona Norte - Sao Paulo, SP",
-    area: 200,
-    bedrooms: 3,
-    bathrooms: 2,
-    parkingSpaces: 2,
-    price: 'R$ 1.000.000',
-    },
-    {
-        images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
-        title: "Casa Luxuosa",
-        location: "Zona Sul - Sao Paulo, SP",
-        area: 300,
-        bedrooms: 5,
-        bathrooms: 4,
-        parkingSpaces: 4,
-        price: 'R$ 1.700.000',
-        },
-        {
-            images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
-            title: "Casa Luxuosa",
-            location: "Zona Leste - Sao Paulo, SP",
-            area: 350,
-            bedrooms: 5,
-            bathrooms: 4,
-            parkingSpaces: 4,
-            price: 'R$ 2.700.000',
-            },
-]
+// const Properties: Property[] = [
+//     {
+//     images: ["/image1.jpg", "/image2.jpg", "/image3.jpg"],
+//     title: "Apartamento",
+//     location: "Rio de Janeiro, RJ",
+//     area: 250,
+//     bedrooms: 4,
+//     bathrooms: 3,
+//     parkingSpaces: 2,
+//     price: 'R$ 1.200.000',
+//  },
+//     {
+//     images: ["/images4.jpg", "/images5.jpg", "/images6.jpg"],
+//     title: "Apartamento Luxuoso",
+//     location: "Zona Norte - Sao Paulo, SP",
+//     area: 200,
+//     bedrooms: 3,
+//     bathrooms: 2,
+//     parkingSpaces: 2,
+//     price: 'R$ 1.000.000',
+//     },
+//     {
+//         images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
+//         title: "Casa Luxuosa",
+//         location: "Zona Sul - Sao Paulo, SP",
+//         area: 300,
+//         bedrooms: 5,
+//         bathrooms: 4,
+//         parkingSpaces: 4,
+//         price: 'R$ 1.700.000',
+//         },
+//         {
+//             images: ["/images7.jpg", "/images8.jpg", "/images9.jpg"],
+//             title: "Casa Luxuosa",
+//             location: "Zona Leste - Sao Paulo, SP",
+//             area: 350,
+//             bedrooms: 5,
+//             bathrooms: 4,
+//             parkingSpaces: 4,
+//             price: 'R$ 2.700.000',
+//             },
+// ]
 
 const Highlights: React.FC = () => {
+    const [properties, setProperties] = useState<Property[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchProperties(){
+            try {
+                const response = await fetch("http://localhost:5000/imoveis");
+                if(!response.ok){
+                    throw new Error("Erro ao buscar os imoveis")
+                }
+                const data = await response.json();
+                setProperties(data)
+                console.log(data)
+            } catch (error: any) {
+                setError(error.message)
+            }finally{
+                setLoading(false);
+            }
+        }
+        fetchProperties();
+    }, [])
+
+    console.log(properties)
+
+    if(loading) return <p>Carregando imoveis...</p>;
+    if(error) return <p>Erro: {error}</p>
+
     return(
         <>
             <section className="highlight-section">
@@ -83,7 +113,7 @@ const Highlights: React.FC = () => {
                     pagination={{ clickable: true }}
                     modules={[Navigation, Pagination ]}
                 >
-                    {Properties.map((property, index) => (
+                    {properties.map((property, index) => (
                             <SwiperSlide key={index}>
                                 <div className="property-slide">
                                     {/* carrossel de imagens do imovel */}

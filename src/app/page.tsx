@@ -6,12 +6,13 @@ import Rental from "./components/rental";
 import Questions from "./components/questions";
 import Search from "./components/search";
 import Footer from "./components/footer";
+import MainSession from "./components/mainsession";
 
 export default function Home() {
   return (
     <>
       <header>
-        <Navigation/>
+        <MainSession/>
       </header>
 
       <main>

@@ -1,0 +1,100 @@
+@import './variables.scss';
+
+.signup-imovel{
+
+    &_header{
+        text-align: center;
+        margin: 20px;
+    }
+
+    &_title{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    &_form-section{
+        background-color: #f8f8f8;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+
+    &_form-title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+
+        & .signup-imovel_step-number{
+            background-color: $secondary-color;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    }
+
+    &_form{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: auto;
+        gap: 15px;
+    }
+
+    &_form-group{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+
+        &--inline{
+            flex-direction: row;
+            gap: 10px;
+        }
+    }
+
+    &_input, &_select, &_textarea{
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    &_textarea{
+        resize: none;
+    }
+
+    &_button{
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover{
+            background-color: #0056b3;
+        }
+    }
+
+    &_privacy{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        a{
+            color: #007bff;
+            text-decoration: none;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

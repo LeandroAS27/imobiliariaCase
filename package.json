@@ -6,14 +6,20 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:backend": "ts-node src/server/index.ts",
+    "build:backend": "tsc src/server/index.ts",
+    "start:backend": "node src/server/index.js"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@neondatabase/serverless": "^0.10.4",
     "@next/font": "^14.2.15",
+    "dotenv": "^16.4.7",
     "framer-motion": "^11.15.0",
     "next": "15.1.3",
+    "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
@@ -22,11 +28,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.17.13",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "cors": "^2.8.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.3",
-    "typescript": "^5"
+    "express": "^4.21.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   }
 }
