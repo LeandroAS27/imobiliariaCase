@@ -1,18 +1,14 @@
-// "use server";
-// import { sql } from "./db";
+"use server";
+import { sql } from "./db";
 
-// export async function getImoveis(){
-//     const data = await sql`
-//         SELECT * FROM imoveis;
-//     `;
-//     return data;
-// }
-
-// (async () => {
-//     try {
-//         const imoveis = await getImoveis();
-//         console.log("Dados dos imoveis", imoveis);
-//     } catch (error) {
-//         console.error("Erro ao buscar imoveis", error);
-//     }
-// })();
+export async function getImoveis(){
+    try {
+        const data = await sql`
+            SELECT * FROM imoveis;
+        `;
+        return data;
+    } catch (error) {
+        console.error("Erro ao buscar imoveis", error)
+        throw new Error("Nao foi possivel buscar os imoveis.")
+    }
+}
