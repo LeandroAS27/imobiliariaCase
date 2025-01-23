@@ -2,16 +2,24 @@
 import { useState } from 'react';
 import '../styles/signImovel.scss';
 
+type FormDataType = {
+    personalData: Record<string, string>;
+    imovelData: Record<string, string>;
+    images: File[];
+}
+
 const SignUpImovel = () => {
     const [formData, setFormData] = useState<{
-        personalData: Record<string, string>;
-        imovelData: Record<string, string>
+        personalData: Record<string, string | number>;
+        imovelData: Record<string, string | number>
+        images: File[];
     }>({
         personalData: {},
         imovelData: {},
+        images: [],
     })
 
-    const handleInputChange = (section: 'personalData' | 'imovelData', name: string, value: string) => {
+    const handleInputChange = (section: 'personalData' | 'imovelData', name: string, value: string | number) => {
         setFormData((prev) => ({
             ...prev,
             [section]: {
@@ -21,24 +29,50 @@ const SignUpImovel = () => {
         }));
     }
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files){
+            setFormData((prev) => ({
+                ...prev,
+                images: Array.from(e.target.files as FileList),
+            }))
+        }
+    }
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const dadosCompletos = {
-            ...formData.personalData,
-            ...formData.imovelData,
-        }
+        console.log("Dados pessoais:", formData.personalData);
+        console.log("Dados do imóvel:", formData.imovelData);
 
-        console.log("dados enviados", dadosCompletos)
+        const formDataToSend = new FormData();
 
+        formDataToSend.append("personalData", JSON.stringify(formData.personalData));
+
+        formDataToSend.append("imovelData", JSON.stringify(formData.imovelData));
+
+        formData.images.forEach((file) => {
+            console.log("adicionando imagens", file)
+            formDataToSend.append("images", file);
+        });
+
+        formDataToSend.forEach((value, key) => {
+            console.log(key, value)
+        })
+
+        
         fetch("http://localhost:5000/sign-up-imovel", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dadosCompletos),
+            body: formDataToSend,
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if(!response.ok){
+                    return response.json().then((errorData) => {
+                        console.error("Dados de erro recebidos: ", errorData)
+                        throw new Error(`Erro do servidor: ${errorData.message || 'Desconhecido'}`)
+                    })
+                }
+                return response.json();
+            })
             .then((data) => {
                 console.log("Sucesso:", data)
             })
@@ -127,7 +161,7 @@ const SignUpImovel = () => {
                         type="number" 
                         name="numero" 
                         placeholder="Número"
-                        onChange={(e) => handleInputChange("personalData", e.target.name, e.target.value)} 
+                        onChange={(e) => handleInputChange("personalData", "numero", e.target.value)} 
                         />
                     </div>
 
@@ -137,7 +171,7 @@ const SignUpImovel = () => {
                         type="text"
                         name="bairro"
                         placeholder="Bairro" 
-                        onChange={(e) => handleInputChange("personalData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("personalData", "bairro", e.target.value)}
                         />
                     </div>
 
@@ -147,7 +181,7 @@ const SignUpImovel = () => {
                         type="text" 
                         name="complemento" 
                         placeholder="Complemento" 
-                        onChange={(e) => handleInputChange("personalData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("personalData", "complemento", e.target.value)}
                         />
                     </div>
 
@@ -157,7 +191,7 @@ const SignUpImovel = () => {
                         type="text" 
                         name="cidade" 
                         placeholder="Cidade" 
-                        onChange={(e) => handleInputChange("personalData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("personalData", "cidade", e.target.value)}
                         />
                     </div>
 
@@ -165,7 +199,7 @@ const SignUpImovel = () => {
                         <select 
                         className="signup-imovel_select" 
                         name="estado"
-                        onChange={(e) => handleInputChange("personalData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("personalData", "estado", e.target.value)}
                         >
                             <option value="">Estado</option>
                             <option value="AC">Acre</option>
@@ -231,7 +265,7 @@ const SignUpImovel = () => {
                     <div className="signup-imovel_form-group">
                         <select 
                         className="signup-imovel_select" 
-                        name="property_pretension"
+                        name="pretensao"
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
                         >
                             <option value="">Pretensão*</option>
@@ -245,17 +279,17 @@ const SignUpImovel = () => {
                         <input 
                         className="signup-imovel_input" 
                         type="text" 
-                        name="cep_imo" 
+                        name="cep_dp" 
                         placeholder="CEP" 
                         required
-                        onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("imovelData", "cep_dp", e.target.value)}
                         />
                     </div>
 
                     <div className="signup-imovel_form-group signup-imovel__form-group--inline">
                         <input 
                         className="signup-imovel_input" 
-                        type="text" name="endereco-imo" 
+                        type="text" name="endereco_dp" 
                         placeholder="Endereço*" 
                         required
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
@@ -263,10 +297,10 @@ const SignUpImovel = () => {
                         <input 
                         className="signup-imovel_input" 
                         type="text" 
-                        name="numero-imo" 
+                        name="numero" 
                         placeholder="Número*" 
                         required
-                        onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("imovelData", "numero", e.target.value)}
                         />
                     </div>
 
@@ -274,9 +308,9 @@ const SignUpImovel = () => {
                         <input 
                         className="signup-imovel_input" 
                         type="text" 
-                        name="complemento_imo" 
+                        name="complemento" 
                         placeholder="Complemento" 
-                        onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("imovelData", "complemento", e.target.value)}
                         />
                     </div>
 
@@ -284,23 +318,23 @@ const SignUpImovel = () => {
                         <input 
                         className="signup-imovel_input"
                         type="text" 
-                        name="bairro-imo" 
+                        name="bairro" 
                         placeholder="Bairro*" 
                         required
-                        onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("imovelData", "bairro", e.target.value)}
                         />
                     </div>
 
                     <div className="signup-imovel_form-group">
                         <input 
                         type="text" 
-                        name="cidade-imo" 
+                        name="cidade" 
                         placeholder="Cidade*"
                         required
-                        onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
+                        onChange={(e) => handleInputChange("imovelData", "cidade", e.target.value)}
                         />
                         <select 
-                        name="uf_imo" 
+                        name="estado" 
                         id="address-uf" 
                         required
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
@@ -359,7 +393,7 @@ const SignUpImovel = () => {
                     <div className="signup-imovel_form-group">
                         <select 
                         className="signup-imovel_select" 
-                        name="dormitorios" 
+                        name="bedrooms" 
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
                         >
                             <option value="">Dormitórios*</option>
@@ -373,7 +407,7 @@ const SignUpImovel = () => {
                     <div className="signup-imovel_form-group">
                         <select 
                         className="signup-imovel_select" 
-                        name="vagas" 
+                        name="parkingspaces" 
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}
                         >
                             <option value="">Vagas</option>
@@ -414,11 +448,25 @@ const SignUpImovel = () => {
                         ></textarea>
                     </div>
 
+                    <div className="signup-imovel_form-group">
+                        <label htmlFor="images" className='signup-imovel_label'>Imagens do imóvel</label>
+                        <input 
+                        className="signup-imovel_input" 
+                        type="file"
+                        name="images"
+                        id='images'
+                        multiple
+                        accept='image/*'
+                        required
+                        onChange={(e) => handleFileChange(e)}
+                        />
+                    </div>
+
                     <label className="signup-imovel_privacy">
                         <input 
                         className="signup-imovel_checkbox" 
                         type="checkbox" 
-                        name="politica_de_privacidade" 
+                        name="aceitou_termos" 
                         value="politica_de_privacidade" 
                         required
                         onChange={(e) => handleInputChange("imovelData", e.target.name, e.target.value)}

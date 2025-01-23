@@ -1,0 +1,124 @@
+.about{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .about-container{
+        padding: 2rem;
+        background-color: #fdfcfc;
+
+        .about-information{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin: auto;
+
+            .about-title{
+                font-size: 2rem;
+                padding: 10px 0;
+            }
+
+            .about-content{
+                padding: 10px;
+                text-align: left;
+            }
+        }
+    }
+
+    .about-data{
+        display: flex;
+        background-color: #f1f0f0;
+        width: 100%;
+        justify-content: center;
+
+        .about-grid{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 4rem;
+            width: 50%;
+
+            .about-card{
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: #fff;
+                padding: 2rem 1.5rem;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                gap: 2rem;
+                width: 100%;
+                transition: border-color .3s ease;
+
+                &:hover{
+                    border-color: #6e6ebe;
+                }
+
+                .about-text{
+                    .about-subtitle{
+                        font-weight: bold;
+                        font-size: 1.4rem;
+                    }
+
+                    .about-description{
+                        font-size: 1.2rem;
+                        color: #6b6a6a;
+                    }
+                }
+            }
+        }
+    }
+
+    .about-mission{
+        display: flex;
+        width: 100%;
+
+        .about-container{
+            max-width: 1200px;
+            margin: 0 auto; // Centraliza o container
+            padding: 2rem;
+          
+            .about-row {
+                display: flex;
+                justify-content: space-between; // Cria o espaço entre os itens
+                margin-bottom: 2rem;
+          
+              .about-item {
+                    flex: 1; // Itens ocupam tamanhos iguais
+                    margin: 0 1rem; // Espaçamento horizontal entre os itens
+                    text-align: center; // Centraliza texto
+          
+                    .about-title {
+                        font-size: 1.8rem;
+                        font-weight: bold;
+                        margin-bottom: 1rem;
+                        color: #333; // Cor do título
+                    }
+          
+                    .about-info {
+                        font-size: 1rem;
+                        line-height: 1.5;
+                        color: #555; // Cor do texto
+                    }
+          
+                    .about-values {
+                        list-style: none;
+                        padding: 0;
+                        margin-top: 1rem;
+            
+                        li {
+                            margin-bottom: 0.5rem;
+                            color: #555; // Cor dos itens
+                            line-height: 1.4;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
