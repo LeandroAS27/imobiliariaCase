@@ -21,7 +21,7 @@ const Navigation = () => {
                         <Link href="/" className="navigation_item">
                             Home
                         </Link>
-                        <Link href="/About" className="navigation_item">
+                        <Link href="/about" className="navigation_item">
                             A Empresa
                         </Link>
                         <Link href="/sign-up-imovel" className="navigation_item">
