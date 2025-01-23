@@ -11,19 +11,19 @@ const About = () => {
             <div className='about-container'>
                 <div className='about-information'>
                     <h1 className='about-title'>Sobre a ImobiliariaCase</h1>
-                    <p className='about-content'>Fundada em 1998 pelo arquiteto Luiz Carlos Castan, a Castan Imóveis tem sua história construída com muito profissionalismo e 
-                        qualidade no atendimento, tendo como pilares a seriedade e a transparência com seus clientes, 
-                        prezando pela total satisfação de todas as partes envolvidas.
+                    <p className='about-content'>Nossa trajetória foi construída com muito profissionalismo e dedicação, 
+                        tendo como base a seriedade e a transparência no relacionamento com nossos clientes.
+                        Nosso compromisso é garantir a total satisfação de todas as partes envolvidas em cada negociação.
                     </p>
 
-                    <p className='about-content'>Contando com uma equipe de consultores altamente capacitada, a Castan te auxilia desde a escolha do seu imóvel até o pós-venda, 
-                        deixando você despreocupado com qualquer problema relacionado à documentação e processos burocráticos. 
-                        Também somos credenciados pelas principais instituições financeiras a prestar assessoria em financiamento 
-                        imobiliário e resgate do FGTS para aquisição de imóveis.
+                    <p className='about-content'>Com uma equipe de consultores experientes e altamente capacitados, acompanhamos você em todas as etapas, desde a escolha do imóvel ideal até o pós-venda. 
+                        Oferecemos suporte completo para lidar com questões documentais e processos burocráticos, proporcionando mais tranquilidade e segurança.
+                        Além disso, somos credenciados pelas principais instituições financeiras para prestar assessoria em financiamentos imobiliários e no uso do FGTS para aquisição de imóveis.
                     </p>
 
-                    <p className='about-content'>Com uma ampla carteira de imóveis na Mooca e região, somos especializados em vendas e locação de imóveis comerciais e residenciais, 
-                        buscando sempre nos atualizar às novas tendências do mercado e oferecer as melhores opções para você!
+                    <p className='about-content'>Dispomos de uma ampla carteira de imóveis, tanto comerciais quanto residenciais, 
+                        com foco em vendas e locação. Estamos sempre atentos às novas tendências do mercado, 
+                        oferecendo as melhores soluções para atender às suas necessidades e superar suas expectativas.
                     </p>
                 </div>
             </div>
@@ -78,14 +78,18 @@ const About = () => {
                         <div className="about-item">
                             <h2 className="about-title">MISSÃO</h2>
                             <p className="about-info">
-                            Nossa missão é ser a chave para o lar perfeito. Viabilizamos a compra e locação do imóvel dos nossos clientes com paixão e dedicação. 
-                            Nossa maior satisfação está em realizar os sonhos das pessoas, transformando casas em lares cheios de felicidade e significado.
+                                Nosso propósito é construir pontes para um futuro onde cada cliente encontre o lar dos seus sonhos. 
+                                Trabalhamos com empenho e cuidado para tornar cada processo de compra ou locação uma experiência única e satisfatória. 
+                                Mais do que imóveis, entregamos histórias e momentos, criando espaços onde a felicidade e as memórias ganham vida.
                             </p>
                         </div>
                         <div className="about-item">
                             <h2 className="about-title">VISÃO</h2>
                             <p className="about-info">
-                            Consolidar nossa liderança regional enquanto estabelecemos novos padrões de excelência, ampliando nosso alcance e impacto no mercado imobiliário, com crescimento de 50% até 2025.
+                                Nosso objetivo é fortalecer nossa posição como referência regional, 
+                                redefinindo padrões de qualidade e inovação no mercado imobiliário. 
+                                Buscamos expandir nossa presença e influência, alcançando um crescimento sustentável de 50% até 2025, 
+                                enquanto criamos soluções que impactam positivamente a vida de nossos clientes.
                             </p>
                         </div>
                     </div>
@@ -96,10 +100,14 @@ const About = () => {
                             A ImoveisCase tem como política interna o contínuo aprimoramento e desenvolvimento de nossas técnicas de atendimento, apoiando nossos clientes e atendendo aos requisitos do segmento imobiliário, bem como cumprindo os requisitos legais, objetivando:
                             </p>
                             <ul className="about-values">
-                                <li>Integridade: Agir com honestidade, transparência e ética em todas as interações.</li>
-                                <li>Excelência no Serviço ao Cliente: Priorizar as necessidades dos clientes, oferecendo serviços de alta qualidade e experiências memoráveis.</li>
-                                <li>Inovação: Buscar continuamente novas maneiras de melhorar, adotando tecnologias emergentes e práticas inovadoras.</li>
-                                <li>Trabalho em Equipe: Fomentar um ambiente colaborativo onde cada membro contribui com suas habilidades para alcançar objetivos comuns.</li>
+                                <li>Integridade: Comprometemo-nos a atuar com transparência, ética e responsabilidade, 
+                                    construindo relações de confiança duradouras com nossos clientes, parceiros e colaboradores. A honestidade é a base de todas as nossas ações.</li>
+                                <li>Excelência no Serviço ao Cliente: Colocamos nossos clientes no centro de tudo o que fazemos, oferecendo soluções personalizadas e experiências que superam expectativas. 
+                                    Nosso compromisso é entregar valor real e criar momentos memoráveis em cada interação.</li>
+                                <li>Inovação: Estamos sempre em busca de novas oportunidades para evoluir. Acreditamos que o uso de tecnologias modernas 
+                                    e práticas inovadoras é essencial para liderar o setor imobiliário e atender às demandas de um mercado em constante transformação.</li>
+                                <li>Trabalho em Equipe: Valorizamos a força da colaboração, reconhecendo que o sucesso vem do esforço coletivo. 
+                                    Promovemos um ambiente de trabalho inclusivo e inspirador, onde cada contribuição é essencial para alcançar nossos objetivos comuns.</li>
                             </ul>
                         </div>
                     </div>
