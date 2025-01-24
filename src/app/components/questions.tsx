@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import '../styles/question.scss';
+import { useRouter } from "next/navigation";
 
 interface FAQItem{
     question: string;
@@ -10,6 +11,7 @@ interface FAQItem{
 
 const Questions: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const router = useRouter();
 
     const toggleItem = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index)
@@ -42,7 +44,7 @@ const Questions: React.FC = () => {
                     documentações e muitas outras coisas. Mas você pode simplificar esse processo contando com o apoio de
                     uma imobiliária especialista no assunto.
                     </p>
-                    <button className="faq-contact-button" onClick={() => toggleItem}> {/* aqui vai redirecionar para a pagina fale conosco */}
+                    <button className="faq-contact-button" onClick={() => router.push("/contact")}> {/* aqui vai redirecionar para a pagina fale conosco */}
                         Fale Conosco
                     </button>
                 </>

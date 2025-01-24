@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import "../styles/highlights.scss"
+import "../styles/highlights.scss";
+import { useState, useEffect } from "react";
 
 //swiperAPI
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,52 +25,34 @@ interface Property{
     bathrooms: number;
     parkingSpaces: number;
     price: string;
+    imovel_valor_locacao: string;
+    imovel_pretensao: string;
 }
 
-const Properties: Property[] = [
-    {
-    images: ["/rental1.webp",],
-    title: "Apartamento",
-    location: "Zona Leste - São Paulo, SP",
-    area: 250,
-    bedrooms: 4,
-    bathrooms: 3,
-    parkingSpaces: 2,
-    price: 'R$ 5.000',
- },
-    {
-    images: ["/rental2.webp",],
-    title: "Apartamento Luxuoso",
-    location: "Zona Norte - São Paulo, SP",
-    area: 200,
-    bedrooms: 3,
-    bathrooms: 2,
-    parkingSpaces: 2,
-    price: 'R$ 8.000',
-    },
-    {
-        images: ["/rental3.webp",],
-        title: "Casa Luxuosa",
-        location: "Zona Sul - Sao Paulo, SP",
-        area: 300,
-        bedrooms: 5,
-        bathrooms: 4,
-        parkingSpaces: 4,
-        price: 'R$ 10.000',
-        },
-        {
-            images: ["/rental3.webp",],
-            title: "Casa Luxuosa",
-            location: "Zona Leste - Sao Paulo, SP",
-            area: 350,
-            bedrooms: 5,
-            bathrooms: 4,
-            parkingSpaces: 4,
-            price: 'R$ 15.000',
-            },
-]
-
 const Rental: React.FC = () => {
+    const [properties, setProperties] = useState<Property[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchProperties(){
+            try {
+                const response = await fetch("http://localhost:5000/imoveis");
+                if(!response.ok){
+                    throw new Error("Erro ao buscar imoveis");
+                }
+                const data: Property[] = await response.json();
+                const filteredData = data.filter((property: any) => property.imovel_pretensao === "Locacao")
+                setProperties(filteredData)
+            } catch (error: any) {
+                setError(error.message)
+            }finally{
+                setLoading(false);
+            }
+        }
+        fetchProperties();
+    }, [])
+
     return(
         <>
             <section className="highlight-section">
@@ -83,7 +66,7 @@ const Rental: React.FC = () => {
                     pagination={{ clickable: true }}
                     modules={[Navigation, Pagination ]}
                 >
-                    {Properties.map((property, index) => (
+                    {properties.map((property, index) => (
                             <SwiperSlide key={index}>
                                 <div className="property-slide">
                                     {/* carrossel de imagens do imovel */}
@@ -120,7 +103,7 @@ const Rental: React.FC = () => {
                                                 <span><FontAwesomeIcon icon={faCar}/> Vagas: {property.parkingSpaces}</span>
                                             </div>
                                         </div>
-                                        <p className="property-price">Alugue: {property.price}</p>
+                                        <p className="property-price">Alugue: {property.imovel_valor_locacao}</p>
                                     </div>
                                 </div>
                             </SwiperSlide>
