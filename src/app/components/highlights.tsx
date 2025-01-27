@@ -34,6 +34,7 @@ interface Property{
 }
 
 const Highlights: React.FC = () => {
+    // const { id } = params
     const [properties, setProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -115,7 +116,9 @@ const Highlights: React.FC = () => {
                                         </div>
                                         <p className="property-price">Venda: {property.price}</p>
                                         <Link
-                                            href={`/imoveis/${property.imovel_pretensao.toLowerCase()}/${property.id}}`}
+                                            href={`/imoveis/venda/${property.id}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                         >
                                             <button className="property-button">Saiba mais</button>
                                         </Link>

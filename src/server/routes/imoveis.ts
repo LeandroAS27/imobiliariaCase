@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { getImoveis } from "../getData";
+import { getImoveis, getImovelById } from "../getData";
 import { sql } from "../db";
 import { error } from "console";
 
@@ -53,7 +53,27 @@ router.get("/imoveis", async (req, res) => {
         console.error("Erro ao buscar imoveis:", error);
         res.status(500).json({error: "Erro ao buscar imoveis"});
     }
-})
+});
+
+router.get(`/imoveis/:id`, async (req, res) => {
+    const { id } = req.params;
+    try {
+        console.log(`buscando imovel com ID: ${id}`)
+        const imovel = await getImovelById(id);
+
+        if(!imovel){
+            res.status(400).json({ error: "Imovel nao encontrado"});
+            return;
+        }
+        console.log("Imovel encontrado", error)
+        res.status(200).json(imovel);
+    } catch (error) {
+        console.error("Erro ao buscar imovel:", error);
+        res.status(500).json({ error: "Erro ao buscar o imovel"});
+    }
+});
+
+
 
 router.get("/sign-up-imovel", (req, res) => {
     res.send("Router funcionando")
